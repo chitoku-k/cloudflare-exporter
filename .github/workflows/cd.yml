@@ -35,4 +35,4 @@ jobs:
           k8s-url: https://k8s.chitoku.jp
           k8s-secret: ${{ secrets.K8S_SECRET }}
       - name: Rollout restart
-        run: kubectl rollout restart deployment/cloudflare-exporter
+        run: kubectl rollout restart --namespace=monitor deployment/cloudflare-exporter
