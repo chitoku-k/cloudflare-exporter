@@ -1,11 +1,12 @@
 package service
 
 import (
+	"context"
 	"time"
 )
 
 type LoadBalancer interface {
-	Collect(poolName string) ([]Pool, error)
+	Collect(ctx context.Context, poolName string) ([]Pool, error)
 }
 
 type Pool struct {

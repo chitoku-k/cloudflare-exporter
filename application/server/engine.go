@@ -64,7 +64,7 @@ func (e *engine) Start(ctx context.Context) error {
 			return
 		}
 
-		pools, err := e.LoadBalancer.Collect(target)
+		pools, err := e.LoadBalancer.Collect(c, target)
 		if err != nil {
 			logrus.Errorf("Error in Cloudflare: %v", err)
 			c.Status(http.StatusInternalServerError)

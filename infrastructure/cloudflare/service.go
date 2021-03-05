@@ -1,6 +1,7 @@
 package cloudflare
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/chitoku-k/cloudflare-exporter/service"
@@ -17,8 +18,8 @@ func NewLoadBalancerService(client *cf.API) service.LoadBalancer {
 	}
 }
 
-func (s *loadBalancerService) Collect(poolName string) ([]service.Pool, error) {
-	pools, err := s.Client.ListLoadBalancerPools()
+func (s *loadBalancerService) Collect(ctx context.Context, poolName string) ([]service.Pool, error) {
+	pools, err := s.Client.ListLoadBalancerPools(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to list pools: %w", err)
 	}
@@ -29,7 +30,7 @@ func (s *loadBalancerService) Collect(poolName string) ([]service.Pool, error) {
 			continue
 		}
 
-		health, err := s.Client.PoolHealthDetails(p.ID)
+		health, err := s.Client.PoolHealthDetails(ctx, p.ID)
 		if err != nil {
 			return nil, fmt.Errorf("failed to get pool health: %w", err)
 		}
