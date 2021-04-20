@@ -20,11 +20,11 @@ $ go build
 # Port number (required)
 export PORT=8080
 
-# Cloudflare API Key and API email (optional; either CF_API_TOKEN, or CF_API_KEY and CF_API_EMAI are required)
+# Cloudflare API Key and API email (optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
 export CF_API_KEY=
 export CF_API_EMAIL=
 
-# Cloudflare API Token (optional; either CF_API_TOKEN, or CF_API_KEY and CF_API_EMAI are required)
+# Cloudflare API Token (optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
 export CF_API_TOKEN=
 ```
 
