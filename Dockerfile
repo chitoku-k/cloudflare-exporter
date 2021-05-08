@@ -1,6 +1,9 @@
 # syntax = docker/dockerfile:experimental
 FROM golang:1.16.4-buster AS build
 WORKDIR /usr/src
+COPY go.mod go.sum /usr/src/
+RUN --mount=type=cache,target=/go \
+    go mod download
 COPY . /usr/src/
 RUN --mount=type=cache,target=/go \
     --mount=type=cache,target=/root/.cache/go-build \
