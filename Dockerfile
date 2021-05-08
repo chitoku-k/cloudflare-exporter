@@ -1,7 +1,10 @@
-FROM golang:1.16.4-buster as build
+# syntax = docker/dockerfile:experimental
+FROM golang:1.16.4-buster AS build
 WORKDIR /usr/src
-COPY . /usr/src
-RUN CGO_ENABLED=0 go build -ldflags='-s -w'
+COPY . /usr/src/
+RUN --mount=type=cache,target=/go \
+    --mount=type=cache,target=/root/.cache/go-build \
+    CGO_ENABLED=0 go build -ldflags='-s -w'
 
 FROM scratch
 ENV GIN_MODE release
