@@ -13,7 +13,7 @@ A Prometheus exporter for Cloudflare Load Balancers
 ## Installation
 
 ```sh
-$ go build
+$ docker buildx build .
 ```
 
 ```sh
