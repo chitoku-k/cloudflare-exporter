@@ -5,8 +5,8 @@ on:
       - '*'
 
 jobs:
-  deploy:
-    name: Deploy
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -29,14 +29,20 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          cache-from: type=local,src=/tmp/buildx-cache
-          cache-to: type=local,dest=/tmp/buildx-cache.new
+          cache-from: type=local,mode=max,src=/tmp/buildx-cache
+          cache-to: type=local,mode=max,dest=/tmp/buildx-cache.new
           push: true
           tags: container.chitoku.jp/chitoku-k/cloudflare-exporter
       - name: Move cache
         run: |
           rm -rf /tmp/buildx-cache
           mv /tmp/buildx-cache{.new,}
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
       - name: Set up kubectl
         uses: azure/setup-kubectl@v1
       - name: Set context

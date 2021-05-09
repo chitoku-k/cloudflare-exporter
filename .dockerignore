@@ -2,4 +2,5 @@ LICENSE
 README.md
 cloudflare-exporter
 .git
+.github
 .gitignore
