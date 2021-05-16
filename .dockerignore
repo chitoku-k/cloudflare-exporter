@@ -1,6 +1,8 @@
+Dockerfile
 LICENSE
 README.md
 cloudflare-exporter
+.dockerignore
 .git
 .github
 .gitignore
