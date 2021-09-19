@@ -3,17 +3,17 @@ package main
 import (
 	"context"
 	"os/signal"
-	"syscall"
 
 	"github.com/chitoku-k/cloudflare-exporter/application/server"
 	"github.com/chitoku-k/cloudflare-exporter/infrastructure/cloudflare"
 	"github.com/chitoku-k/cloudflare-exporter/infrastructure/config"
 	cf "github.com/cloudflare/cloudflare-go"
 	"github.com/sirupsen/logrus"
+	"golang.org/x/sys/unix"
 )
 
 func main() {
-	ctx, stop := signal.NotifyContext(context.TODO(), syscall.SIGINT, syscall.SIGTERM)
+	ctx, stop := signal.NotifyContext(context.TODO(), unix.SIGINT, unix.SIGTERM)
 	defer stop()
 
 	env, err := config.Get()
