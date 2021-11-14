@@ -20,6 +20,10 @@ $ docker buildx build .
 # Port number (required)
 export PORT=8080
 
+# TLS certificate and private key (optional; if not specified, exporter is served over HTTP)
+export TLS_CERT=/path/to/tls/cert
+export TLS_KEY=/path/to/tls/key
+
 # Cloudflare API Key and API email (optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
 export CF_API_KEY=
 export CF_API_EMAIL=

@@ -9,7 +9,7 @@ require (
 	github.com/prometheus/client_golang v1.11.0
 	github.com/sirupsen/logrus v1.8.1
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	golang.org/x/sys v0.0.0-20210917161153-d61c044b1678
+	golang.org/x/sys v0.0.0-20211113001501-0c823b97ae02
 )
 
 require (

@@ -10,9 +10,10 @@ RUN --mount=type=cache,target=/go \
     CGO_ENABLED=0 go build -ldflags='-s -w'
 
 FROM scratch
-ENV GIN_MODE release
-ENV PORT 80
+ARG PORT=80
+ENV PORT=$PORT
+ENV GIN_MODE=release
 COPY --from=build /usr/src/cloudflare-exporter /cloudflare-exporter
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-EXPOSE 80
+EXPOSE $PORT
 CMD ["/cloudflare-exporter"]

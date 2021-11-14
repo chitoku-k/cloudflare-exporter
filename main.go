@@ -34,6 +34,8 @@ func main() {
 
 	engine := server.NewEngine(
 		env.Port,
+		env.TLSCert,
+		env.TLSKey,
 		cloudflare.NewLoadBalancerService(client),
 	)
 	err = engine.Start(ctx)
