@@ -8,6 +8,8 @@ import (
 
 type Environment struct {
 	Port       string
+	TLSCert    string
+	TLSKey     string
 	Cloudflare Cloudflare
 }
 
@@ -25,6 +27,8 @@ func Get() (Environment, error) {
 	var env Environment
 
 	for k, v := range map[string]*string{
+		"TLS_CERT":     &env.TLSCert,
+		"TLS_KEY":      &env.TLSKey,
 		"CF_API_TOKEN": &env.Cloudflare.APIToken,
 		"CF_API_KEY":   &env.Cloudflare.APIKey,
 		"CF_API_EMAIL": &env.Cloudflare.APIEmail,
