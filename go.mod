@@ -6,7 +6,7 @@ require (
 	github.com/cloudflare/cloudflare-go v0.31.0
 	github.com/gin-gonic/gin v1.7.7
 	github.com/kr/pretty v0.2.0 // indirect
-	github.com/prometheus/client_golang v1.12.0
+	github.com/prometheus/client_golang v1.12.1
 	github.com/sirupsen/logrus v1.8.1
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	golang.org/x/sys v0.0.0-20220114195835-da31bd327af9
