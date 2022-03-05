@@ -10,6 +10,13 @@ A Prometheus exporter for Cloudflare Load Balancers
 - Go
 - Cloudflare Load Balancing subscription
 
+## API Access
+
+For Cloudflare API, it is strongly recommended to create a dedicated token.
+Ensure the following permission is granted to the token:
+
+- Zone: Load Balancers (Read)
+
 ## Installation
 
 ```sh
@@ -24,12 +31,12 @@ export PORT=8080
 export TLS_CERT=/path/to/tls/cert
 export TLS_KEY=/path/to/tls/key
 
+# Cloudflare API Token (recommended, optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
+export CF_API_TOKEN=
+
 # Cloudflare API Key and API email (optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
 export CF_API_KEY=
 export CF_API_EMAIL=
-
-# Cloudflare API Token (optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
-export CF_API_TOKEN=
 ```
 
 ## Usage
