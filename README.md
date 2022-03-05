@@ -15,7 +15,7 @@ A Prometheus exporter for Cloudflare Load Balancers
 For Cloudflare API, it is strongly recommended to create a dedicated token.
 Ensure the following permission is granted to the token:
 
-- Zone: Load Balancers (Read)
+- Account - Load Balancing: Monitors And Pools (Read)
 
 ## Installation
 
