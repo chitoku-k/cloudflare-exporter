@@ -1,6 +1,6 @@
 module github.com/chitoku-k/cloudflare-exporter
 
-go 1.17
+go 1.18
 
 replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220214200702-86341886e292
 
