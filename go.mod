@@ -2,16 +2,16 @@ module github.com/chitoku-k/cloudflare-exporter
 
 go 1.18
 
-replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220214200702-86341886e292
+replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4
 
 require (
-	github.com/cloudflare/cloudflare-go v0.37.0
+	github.com/cloudflare/cloudflare-go v0.38.0
 	github.com/gin-gonic/gin v1.7.7
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/prometheus/client_golang v1.12.1
 	github.com/sirupsen/logrus v1.8.1
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	golang.org/x/sys v0.0.0-20220227234510-4e6760a101f9
+	golang.org/x/sys v0.0.0-20220422013727-9388b58f7150
 )
 
 require (
