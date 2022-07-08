@@ -5,7 +5,7 @@ go 1.18
 replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4
 
 require (
-	github.com/cloudflare/cloudflare-go v0.43.0
+	github.com/cloudflare/cloudflare-go v0.44.0
 	github.com/gin-gonic/gin v1.8.1
 	github.com/prometheus/client_golang v1.12.2
 	github.com/sirupsen/logrus v1.8.1
@@ -36,7 +36,7 @@ require (
 	github.com/prometheus/procfs v0.7.3 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
-	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
+	golang.org/x/net v0.0.0-20220412020605-290c469a71a5 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20220224211638-0e9765cccd65 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
