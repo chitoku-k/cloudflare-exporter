@@ -8,9 +8,9 @@ require (
 	github.com/cloudflare/cloudflare-go v0.45.0
 	github.com/gin-gonic/gin v1.8.1
 	github.com/prometheus/client_golang v1.12.2
-	github.com/sirupsen/logrus v1.8.1
+	github.com/sirupsen/logrus v1.9.0
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	golang.org/x/sys v0.0.0-20220704084225-05e143d24a9e
+	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8
 )
 
 require (
