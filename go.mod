@@ -1,8 +1,8 @@
 module github.com/chitoku-k/cloudflare-exporter
 
-go 1.18
+go 1.19
 
-replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4
+replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d
 
 require (
 	github.com/cloudflare/cloudflare-go v0.47.1
