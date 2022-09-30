@@ -19,7 +19,7 @@ func NewLoadBalancerService(client *cf.API) service.LoadBalancer {
 }
 
 func (s *loadBalancerService) Collect(ctx context.Context, poolName string) ([]service.Pool, error) {
-	pools, err := s.Client.ListLoadBalancerPools(ctx)
+	pools, err := s.Client.ListLoadBalancerPools(ctx, cf.UserIdentifier(""), cf.ListLoadBalancerPoolParams{})
 	if err != nil {
 		return nil, fmt.Errorf("failed to list pools: %w", err)
 	}
@@ -30,7 +30,7 @@ func (s *loadBalancerService) Collect(ctx context.Context, poolName string) ([]s
 			continue
 		}
 
-		health, err := s.Client.PoolHealthDetails(ctx, p.ID)
+		health, err := s.Client.GetLoadBalancerPoolHealth(ctx, cf.UserIdentifier(""), p.ID)
 		if err != nil {
 			return nil, fmt.Errorf("failed to get pool health: %w", err)
 		}
