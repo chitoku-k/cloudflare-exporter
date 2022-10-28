@@ -5,7 +5,7 @@ go 1.19
 replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d
 
 require (
-	github.com/cloudflare/cloudflare-go v0.52.0
+	github.com/cloudflare/cloudflare-go v0.53.0
 	github.com/gin-gonic/gin v1.8.1
 	github.com/prometheus/client_golang v1.13.0
 	github.com/sirupsen/logrus v1.9.0
@@ -32,7 +32,6 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.2 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.37.0 // indirect
 	github.com/prometheus/procfs v0.8.0 // indirect
