@@ -7,7 +7,7 @@ replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220622213112-0559593
 require (
 	github.com/cloudflare/cloudflare-go v0.53.0
 	github.com/gin-gonic/gin v1.8.1
-	github.com/prometheus/client_golang v1.13.0
+	github.com/prometheus/client_golang v1.13.1
 	github.com/sirupsen/logrus v1.9.0
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
 	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f
