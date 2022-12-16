@@ -89,4 +89,4 @@ cloudflare_origin_rtt_seconds{code="503",health_region="NEAS",origin_address="ww
 | 500    | Unexpected error calling Cloudflare API. |
 
 [workflow-link]:    https://github.com/chitoku-k/cloudflare-exporter/actions?query=branch:master
-[workflow-badge]:   https://img.shields.io/github/workflow/status/chitoku-k/cloudflare-exporter/CI%20Workflow/master.svg?style=flat-square
+[workflow-badge]:   https://img.shields.io/github/actions/workflow/status/chitoku-k/cloudflare-exporter/ci.yml?branch=master&style=flat-square
