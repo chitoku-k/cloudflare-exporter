@@ -18,7 +18,7 @@ jobs:
           key: buildx-${{ github.sha }}
           restore-keys: buildx-
       - name: Build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           cache-from: type=local,src=/tmp/buildx-cache
