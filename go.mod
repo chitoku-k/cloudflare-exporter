@@ -5,7 +5,7 @@ go 1.19
 replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d
 
 require (
-	github.com/cloudflare/cloudflare-go v0.57.1
+	github.com/cloudflare/cloudflare-go v0.58.1
 	github.com/gin-gonic/gin v1.8.2
 	github.com/prometheus/client_golang v1.14.0
 	github.com/sirupsen/logrus v1.9.0
@@ -24,7 +24,7 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
-	github.com/hashicorp/go-retryablehttp v0.7.1 // indirect
+	github.com/hashicorp/go-retryablehttp v0.7.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-isatty v0.0.16 // indirect
