@@ -3,7 +3,7 @@ module github.com/chitoku-k/cloudflare-exporter
 go 1.20
 
 require (
-	github.com/cloudflare/cloudflare-go v0.63.0
+	github.com/cloudflare/cloudflare-go v0.64.0
 	github.com/gin-gonic/gin v1.9.0
 	github.com/prometheus/client_golang v1.14.0
 	github.com/sirupsen/logrus v1.9.0
