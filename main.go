@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"os"
 	"os/signal"
 
 	"github.com/chitoku-k/cloudflare-exporter/application/server"
@@ -9,11 +10,12 @@ import (
 	"github.com/chitoku-k/cloudflare-exporter/infrastructure/config"
 	cf "github.com/cloudflare/cloudflare-go"
 	"github.com/sirupsen/logrus"
-	"golang.org/x/sys/unix"
 )
 
+var signals = []os.Signal{os.Interrupt}
+
 func main() {
-	ctx, stop := signal.NotifyContext(context.TODO(), unix.SIGINT, unix.SIGTERM)
+	ctx, stop := signal.NotifyContext(context.Background(), signals...)
 	defer stop()
 
 	env, err := config.Get()
