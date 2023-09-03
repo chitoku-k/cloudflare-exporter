@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
+	"log/slog"
 	"net"
 	"net/http"
 
@@ -11,7 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/sirupsen/logrus"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -73,7 +73,7 @@ func (e *engine) Start(ctx context.Context) error {
 
 		pools, err := e.LoadBalancer.Collect(c, target)
 		if err != nil {
-			logrus.Errorf("Error in Cloudflare: %v", err)
+			slog.Error("Error in Cloudflare", "err", err)
 			c.Status(http.StatusInternalServerError)
 			return
 		}
