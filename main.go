@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log/slog"
 	"os"
 	"os/signal"
 
@@ -9,7 +10,6 @@ import (
 	"github.com/chitoku-k/cloudflare-exporter/infrastructure/cloudflare"
 	"github.com/chitoku-k/cloudflare-exporter/infrastructure/config"
 	cf "github.com/cloudflare/cloudflare-go"
-	"github.com/sirupsen/logrus"
 )
 
 var signals = []os.Signal{os.Interrupt}
@@ -20,7 +20,8 @@ func main() {
 
 	env, err := config.Get()
 	if err != nil {
-		logrus.Fatalf("Failed to initialize config: %v", err)
+		slog.Error("Failed to initialize config", "err", err)
+		os.Exit(1)
 	}
 
 	var client *cf.API
@@ -31,7 +32,8 @@ func main() {
 	}
 
 	if err != nil {
-		logrus.Fatalf("Failed to initialize Cloudflare client: %v", err)
+		slog.Error("Failed to initialize Cloudflare client", "err", err)
+		os.Exit(1)
 	}
 
 	engine := server.NewEngine(
@@ -42,6 +44,7 @@ func main() {
 	)
 	err = engine.Start(ctx)
 	if err != nil {
-		logrus.Fatalf("Failed to start web server: %v", err)
+		slog.Error("Failed to start web server", "err", err)
+		os.Exit(1)
 	}
 }
