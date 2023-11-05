@@ -19,6 +19,8 @@ Ensure the following permission is granted to the token:
 
 ## Installation
 
+### Linux
+
 ```sh
 $ docker buildx build .
 ```
@@ -39,10 +41,40 @@ export CF_API_KEY=
 export CF_API_EMAIL=
 ```
 
+### Windows
+
+```powershell
+> docker build --file=Dockerfile.windows .
+```
+
+```powershell
+# Port number (required)
+$Env:PORT = 8080
+
+# TLS certificate and private key (optional; if not specified, exporter is served over HTTP)
+$Env:TLS_CERT = "\path\to\tls\cert"
+$Env:TLS_KEY = "\path\to\tls\key"
+
+# Cloudflare API Token (recommended, optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
+$Env:CF_API_TOKEN = ""
+
+# Cloudflare API Key and API email (optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
+$Env:CF_API_KEY = ""
+$Env:CF_API_EMAIL = ""
+```
+
 ## Usage
+
+### Linux
 
 ```sh
 $ ./cloudflare-exporter
+```
+
+### Windows
+
+```powershell
+> .\cloudflare-exporter.exe
 ```
 
 ## Prometheus Configuration
