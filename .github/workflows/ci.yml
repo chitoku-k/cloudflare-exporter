@@ -3,8 +3,8 @@ on:
   - push
 
 jobs:
-  build:
-    name: Build
+  build-linux:
+    name: Build (Linux)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,3 +17,20 @@ jobs:
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max
+  build-windows:
+    name: Build (Windows)
+    strategy:
+      matrix:
+        target:
+          - os: windows-2022
+            release: ltsc2022
+    runs-on: ${{ matrix.target.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Build
+        run: |
+          docker build `
+            --file=Dockerfile.windows `
+            --build-arg=WINDOWS_RELEASE=${{ matrix.target.release }} `
+            .
