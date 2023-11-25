@@ -1,13 +1,12 @@
 # escape = `
-ARG WINDOWS_RELEASE=1809
-FROM golang:1.21.3-nanoserver-$WINDOWS_RELEASE AS build
+FROM golang:1.21.3-nanoserver AS build
 WORKDIR \Source
 COPY go.mod go.sum \Source\
 RUN go mod download
 COPY . \Source\
 RUN go build -ldflags="-s -w"
 
-FROM mcr.microsoft.com/windows/nanoserver:$WINDOWS_RELEASE
+FROM mcr.microsoft.com/windows/nanoserver
 ARG PORT=80
 ENV PORT=$PORT
 ENV GIN_MODE=release
