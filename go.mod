@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/cloudflare/cloudflare-go v0.84.0
 	github.com/gin-gonic/gin v1.9.1
-	github.com/prometheus/client_golang v1.17.0
+	github.com/prometheus/client_golang v1.18.0
 	golang.org/x/sync v0.5.0
 	golang.org/x/sys v0.15.0
 )
@@ -22,7 +22,6 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.15.3 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
-	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-retryablehttp v0.7.5 // indirect
@@ -31,13 +30,13 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/leodido/go-urn v1.2.4 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
-	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
+	github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
-	github.com/prometheus/client_model v0.4.1-0.20230718164431-9a2bf3000d16 // indirect
-	github.com/prometheus/common v0.44.0 // indirect
-	github.com/prometheus/procfs v0.11.1 // indirect
+	github.com/prometheus/client_model v0.5.0 // indirect
+	github.com/prometheus/common v0.45.0 // indirect
+	github.com/prometheus/procfs v0.12.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	golang.org/x/arch v0.5.0 // indirect
