@@ -1,6 +1,6 @@
 module github.com/chitoku-k/cloudflare-exporter
 
-go 1.22
+go 1.23
 
 require (
 	github.com/cloudflare/cloudflare-go v0.101.0
