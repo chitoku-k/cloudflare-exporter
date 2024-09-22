@@ -35,12 +35,17 @@ func main() {
 		slog.Error("Failed to initialize Cloudflare client", "err", err)
 		os.Exit(1)
 	}
-
+	var rc *cf.ResourceContainer
+	if env.Cloudflare.AccountID == "" {
+		rc = cf.UserIdentifier("")
+	} else {
+		rc = cf.AccountIdentifier(env.Cloudflare.AccountID)
+	}
 	engine := server.NewEngine(
 		env.Port,
 		env.TLSCert,
 		env.TLSKey,
-		cloudflare.NewLoadBalancerService(client),
+		cloudflare.NewLoadBalancerService(client, rc),
 	)
 	err = engine.Start(ctx)
 	if err != nil {
