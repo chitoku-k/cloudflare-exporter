@@ -61,4 +61,4 @@ jobs:
           kubectl config use-context k8s.chitoku.jp
       - name: Update image
         run: |
-          kubectl set image deployment/cloudflare-exporter web=ghcr.io/chitoku-k/cloudflare-exporter:${{ github.ref_name }}
+          kubectl set image --field-manager=github-actions deployment/cloudflare-exporter web=ghcr.io/chitoku-k/cloudflare-exporter:${{ github.ref_name }}
