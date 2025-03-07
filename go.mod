@@ -5,7 +5,7 @@ go 1.24
 require (
 	github.com/cloudflare/cloudflare-go v0.115.0
 	github.com/gin-gonic/gin v1.10.0
-	github.com/prometheus/client_golang v1.21.0
+	github.com/prometheus/client_golang v1.21.1
 	golang.org/x/sync v0.11.0
 	golang.org/x/sys v0.30.0
 )
