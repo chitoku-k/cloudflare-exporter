@@ -12,7 +12,7 @@ A Prometheus exporter for Cloudflare Load Balancers
 
 ## API Access
 
-For Cloudflare API, it is strongly recommended to create a dedicated token.
+For Cloudflare API, it is strongly recommended to create a dedicated Account API token or User API token.
 Ensure the following permission is granted to the token:
 
 - Account - Load Balancing: Monitors And Pools (Read)
@@ -39,6 +39,9 @@ export CF_API_TOKEN=
 # Cloudflare API Key and API email (optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
 export CF_API_KEY=
 export CF_API_EMAIL=
+
+# Cloudflare Account ID (optional)
+export CF_ACCOUNT_ID=
 ```
 
 ### Windows
@@ -61,6 +64,9 @@ $Env:CF_API_TOKEN = ""
 # Cloudflare API Key and API email (optional; either CF_API_TOKEN, or the combination of CF_API_KEY and CF_API_EMAIL is required)
 $Env:CF_API_KEY = ""
 $Env:CF_API_EMAIL = ""
+
+# Cloudflare Account ID (optional)
+$Env:CF_ACCOUNT_ID = ""
 ```
 
 ## Usage
