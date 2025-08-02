@@ -9,19 +9,19 @@ import (
 )
 
 type loadBalancerService struct {
-	Client    *cf.API
-	AccountId *cf.ResourceContainer
+	Client *cf.API
+	RC     *cf.ResourceContainer
 }
 
-func NewLoadBalancerService(client *cf.API, accountId *cf.ResourceContainer) service.LoadBalancer {
+func NewLoadBalancerService(client *cf.API, rc *cf.ResourceContainer) service.LoadBalancer {
 	return &loadBalancerService{
-		Client:    client,
-		AccountId: accountId,
+		Client: client,
+		RC:     rc,
 	}
 }
 
 func (s *loadBalancerService) Collect(ctx context.Context, poolName string) ([]service.Pool, error) {
-	pools, err := s.Client.ListLoadBalancerPools(ctx, s.AccountId, cf.ListLoadBalancerPoolParams{})
+	pools, err := s.Client.ListLoadBalancerPools(ctx, s.RC, cf.ListLoadBalancerPoolParams{})
 	if err != nil {
 		return nil, fmt.Errorf("failed to list pools: %w", err)
 	}
@@ -32,7 +32,7 @@ func (s *loadBalancerService) Collect(ctx context.Context, poolName string) ([]s
 			continue
 		}
 
-		health, err := s.Client.GetLoadBalancerPoolHealth(ctx, s.AccountId, p.ID)
+		health, err := s.Client.GetLoadBalancerPoolHealth(ctx, s.RC, p.ID)
 		if err != nil {
 			return nil, fmt.Errorf("failed to get pool health: %w", err)
 		}
