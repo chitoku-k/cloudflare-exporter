@@ -35,7 +35,7 @@ jobs:
           tags: |
             ghcr.io/chitoku-k/cloudflare-exporter:latest
   build-windows:
-    name: Build (Windows)
+    name: Build (${{ matrix.target.os }})
     strategy:
       matrix:
         target:
