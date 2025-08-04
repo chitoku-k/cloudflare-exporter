@@ -47,7 +47,7 @@ export CF_ACCOUNT_ID=
 ### Windows
 
 ```powershell
-> docker build --file=Dockerfile.windows .
+> docker buildx build --file=Dockerfile.windows .
 ```
 
 ```powershell
