@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log/slog"
+	"net/http"
 	"os"
 	"os/signal"
 
@@ -46,6 +47,7 @@ func main() {
 		env.TLSCert,
 		env.TLSKey,
 		cloudflare.NewLoadBalancerService(client, rc),
+		cloudflare.NewProbeService(http.DefaultClient),
 	)
 	err = engine.Start(ctx)
 	if err != nil {

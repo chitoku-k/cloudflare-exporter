@@ -20,6 +20,7 @@ type engine struct {
 	CertFile     string
 	KeyFile      string
 	LoadBalancer service.LoadBalancer
+	Probe        service.Probe
 }
 
 type Engine interface {
@@ -31,12 +32,14 @@ func NewEngine(
 	certFile string,
 	keyFile string,
 	loadBalancer service.LoadBalancer,
+	probe service.Probe,
 ) Engine {
 	return &engine{
 		Port:         port,
 		CertFile:     certFile,
 		KeyFile:      keyFile,
 		LoadBalancer: loadBalancer,
+		Probe:        probe,
 	}
 }
 
@@ -100,6 +103,47 @@ func (e *engine) Start(ctx context.Context) error {
 
 		registry := prometheus.NewRegistry()
 		registry.MustRegister(health, rtt)
+
+		handler := promhttp.HandlerFor(registry, promhttp.HandlerOpts{})
+		handler.ServeHTTP(c.Writer, c.Request)
+	})
+
+	router.GET("/probe", func(c *gin.Context) {
+		info := prometheus.NewGaugeVec(prometheus.GaugeOpts{
+			Namespace: "cloudflare",
+			Name:      "trace_info",
+			Help:      "Result of /cdn-cgi/trace endpoint",
+		}, []string{"h", "colo"})
+
+		timestamp := prometheus.NewGaugeVec(prometheus.GaugeOpts{
+			Namespace: "cloudflare",
+			Name:      "trace_timestamp",
+			Help:      "Timestamp of /cdn-cgi/trace endpoint",
+		}, []string{"h", "colo"})
+
+		target, ok := c.GetQuery("target")
+		if !ok {
+			c.Status(http.StatusBadRequest)
+			return
+		}
+
+		trace, err := e.Probe.Collect(ctx, target)
+		if err != nil {
+			slog.Error("Error when probing", "err", err)
+			c.Status(http.StatusInternalServerError)
+			return
+		}
+
+		labels := prometheus.Labels{
+			"h":    trace.H,
+			"colo": trace.Colo,
+		}
+
+		info.With(labels).Set(1)
+		timestamp.With(labels).Set(float64(trace.TS.Unix()))
+
+		registry := prometheus.NewRegistry()
+		registry.MustRegister(info, timestamp)
 
 		handler := promhttp.HandlerFor(registry, promhttp.HandlerOpts{})
 		handler.ServeHTTP(c.Writer, c.Request)
