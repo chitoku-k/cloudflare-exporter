@@ -42,7 +42,9 @@ func (s *probeService) Collect(ctx context.Context, url string) (service.Trace, 
 	if err != nil {
 		return service.Trace{}, fmt.Errorf("failed to request: %w", err)
 	}
-	defer res.Body.Close()
+	defer func() {
+		_ = res.Body.Close()
+	}()
 
 	if res.StatusCode != http.StatusOK {
 		return service.Trace{}, fmt.Errorf("failed to trace: status: %d", res.StatusCode)
