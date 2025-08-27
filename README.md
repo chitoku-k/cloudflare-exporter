@@ -3,7 +3,7 @@ cloudflare-exporter
 
 [![][workflow-badge]][workflow-link]
 
-A Prometheus exporter for Cloudflare Load Balancers
+A Prometheus exporter for Cloudflare /cdn-cgi/trace endpoint and Load Balancers
 
 ## Requirements
 
@@ -85,6 +85,42 @@ $ ./cloudflare-exporter
 
 ## Prometheus Configuration
 
+### /cdn-cgi/ endpoint
+
+The cloudflare exporter needs the URL of /cdn-cgi/ endpoint to be passed which
+can be configured by relabelling in a similar way to the blackbox exporter.
+
+Example config:
+
+```yaml
+scrape_configs:
+  - job_name: cloudflare-cdn-cgi
+    metrics_path: /probe
+    static_configs:
+      - targets:
+        - https://one.one.one.one # The base URL of the /cdn-cgi/ endpoint to check for.
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:8080 # The cloudflare exporter's real hostname:port.
+```
+
+Example result:
+
+```
+# HELP cloudflare_trace_info Result of /cdn-cgi/trace endpoint
+# TYPE cloudflare_trace_info gauge
+cloudflare_trace_info{colo="NRT",h="one.one.one.one"} 1
+# HELP cloudflare_trace_timestamp Timestamp of /cdn-cgi/trace endpoint
+# TYPE cloudflare_trace_timestamp gauge
+cloudflare_trace_timestamp{colo="NRT",h="one.one.one.one"} 1.756297842e+09
+```
+
+### Load Balancers
+
 The Cloudflare exporter needs the name of pools to be passed which can be
 configured by relabelling in a similar way to the blackbox exporter.
 
@@ -92,7 +128,7 @@ Example config:
 
 ```yaml
 scrape_configs:
-  - job_name: cloudflare
+  - job_name: cloudflare-loadbalancers
     static_configs:
       - targets:
         - pool01 # Name of Cloudflare pool to check for.
