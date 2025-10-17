@@ -1,7 +1,7 @@
 # escape = `
 ARG WINDOWS_RELEASE=1809
 
-FROM golang:1.25.2-nanoserver AS base
+FROM golang:1.25.3-nanoserver AS base
 WORKDIR \Source
 COPY go.mod go.sum \Source\
 RUN go mod download
