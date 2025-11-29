@@ -10,8 +10,8 @@ defaults:
     shell: bash
 
 jobs:
-  build-linux:
-    name: Build (Linux)
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -34,23 +34,6 @@ jobs:
           push: ${{ github.ref_name == 'master' }}
           tags: |
             ghcr.io/chitoku-k/cloudflare-exporter:latest
-  build-windows:
-    name: Build (${{ matrix.target.os }})
-    strategy:
-      matrix:
-        target:
-          - os: windows-2022
-            release: ltsc2022
-    runs-on: ${{ matrix.target.os }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-      - name: Build
-        run: |
-          docker build \
-            --file=Dockerfile.windows \
-            --build-arg=WINDOWS_RELEASE=${{ matrix.target.release }} \
-            .
   test:
     name: Test
     runs-on: ubuntu-latest
