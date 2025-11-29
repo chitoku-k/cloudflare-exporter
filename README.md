@@ -22,7 +22,7 @@ Ensure the following permission is granted to the token:
 ### Linux
 
 ```sh
-$ docker buildx build .
+$ go build .
 ```
 
 ```sh
@@ -47,7 +47,7 @@ export CF_ACCOUNT_ID=
 ### Windows
 
 ```powershell
-> docker build --file=Dockerfile.windows .
+> go build .
 ```
 
 ```powershell
