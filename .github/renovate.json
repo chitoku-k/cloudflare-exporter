@@ -12,6 +12,10 @@
   "prHourlyLimit": 0,
   "packageRules": [
     {
+      "matchDepNames": ["github.com/cloudflare/cloudflare-go"],
+      "enabled": false
+    },
+    {
       "matchManagers": ["dockerfile"],
       "addLabels": ["docker"]
     },
