@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":disableDependencyDashboard"],
+  "schedule": ["* 0-3 * * 6"],
+  "timezone": "Asia/Tokyo",
+  "labels": ["dependencies"],
+  "commitMessageAction": "Bump",
+  "commitMessageExtra": "",
+  "commitMessageSuffix": "from {{currentVersion}} to {{newVersion}}",
+  "commitMessageTopic": "{{depName}}",
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "packageRules": [
+    {
+      "matchManagers": ["dockerfile"],
+      "addLabels": ["docker"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "addLabels": ["github_actions"]
+    },
+    {
+      "matchManagers": ["gomod"],
+      "addLabels": ["go"]
+    },
+    {
+      "matchDepNames": ["go", "golang"],
+      "groupName": "go",
+      "minimumGroupSize": 2
+    }
+  ]
+}
