@@ -1,0 +1,58 @@
+name: Release
+on:
+  release:
+    types:
+      - published
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  lint:
+    name: Lint
+    uses: ./.github/workflows/lint.yml
+
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+
+  publish-executable:
+    name: Publish executable
+    needs:
+      - lint
+      - test
+    uses: ./.github/workflows/publish-executable.yml
+    permissions:
+      contents: write
+    with:
+      tag: ${{ github.event.release.tag_name }}
+
+  publish-image:
+    name: Publish image
+    needs:
+      - lint
+      - test
+    uses: ./.github/workflows/publish-image.yml
+    permissions:
+      packages: write
+    with:
+      tags: ${{ github.event.release.tag_name }},latest
+
+  deploy:
+    name: Deploy
+    needs:
+      - publish-image
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+      - name: Set up kubectl context
+        uses: chitoku-k/actions/setup-kubectl-context@master
+        with:
+          namespace: monitor
+      - name: Update images
+        run: |
+          kubectl set image --field-manager=github-actions deployment/cloudflare-exporter web=ghcr.io/chitoku-k/cloudflare-exporter:${{ github.ref_name }}

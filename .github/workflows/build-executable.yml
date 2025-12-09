@@ -1,0 +1,61 @@
+name: Build executable
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_call:
+    inputs:
+      upload:
+        type: boolean
+        default: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: ${{ matrix.platform.os }}/${{ matrix.platform.arch }}
+    runs-on: ${{ matrix.platform.label }}
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - os: linux
+            arch: amd64
+            label: ubuntu-24.04
+          - os: linux
+            arch: arm64
+            label: ubuntu-24.04-arm
+          - os: windows
+            arch: amd64
+            label: windows-2025
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          filter: tree:0
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+      - name: Get version
+        uses: chitoku-k/actions/describe-git-tag@master
+        id: version
+      - name: Build
+        run: |
+          mkdir -p "${{ runner.temp }}/artifacts"
+          go build -o ${{ runner.temp }}/artifacts -trimpath -ldflags="-s -w -X main.version=${{ steps.version.outputs.value }}"
+      - name: Upload
+        if: ${{ inputs.upload || false }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: artifacts--${{ matrix.platform.os }}-${{ matrix.platform.arch }}
+          path: ${{ runner.temp }}/artifacts/*
+          if-no-files-found: error
+          retention-days: 1
