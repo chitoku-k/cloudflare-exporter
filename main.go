@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 	"net/http"
 	"os"
@@ -11,11 +12,24 @@ import (
 	"github.com/chitoku-k/cloudflare-exporter/infrastructure/cloudflare"
 	"github.com/chitoku-k/cloudflare-exporter/infrastructure/config"
 	cf "github.com/cloudflare/cloudflare-go"
+	"github.com/spf13/pflag"
 )
 
-var signals = []os.Signal{os.Interrupt}
+var (
+	signals = []os.Signal{os.Interrupt}
+	name    = "cloudflare-exporter"
+	version = "v0.0.0-dev"
+
+	flagversion = pflag.BoolP("version", "V", false, "show version")
+)
 
 func main() {
+	pflag.Parse()
+	if *flagversion {
+		fmt.Println(name, version)
+		return
+	}
+
 	ctx, stop := signal.NotifyContext(context.Background(), signals...)
 	defer stop()
 
