@@ -7,7 +7,6 @@ A Prometheus exporter for Cloudflare /cdn-cgi/trace endpoint and Load Balancers
 
 ## Requirements
 
-- Go
 - Cloudflare Load Balancing subscription
 
 ## API Access
@@ -17,13 +16,23 @@ Ensure the following permission is granted to the token:
 
 - Account - Load Balancing: Monitors And Pools (Read)
 
-## Installation
+## Production
+
+### Container images
+
+- [ghcr.io/chitoku-k/cloudflare-exporter](https://github.com/chitoku-k/cloudflare-exporter/pkgs/container/cloudflare-exporter)
+
+```console
+$ docker buildx bake
+```
+
+### Executables
+
+- [GitHub Releases](https://github.com/chitoku-k/cloudflare-exporter/releases)
+
+## Configurations
 
 ### Linux
-
-```sh
-$ go build .
-```
 
 ```sh
 # Port number (required)
@@ -47,10 +56,6 @@ export CF_ACCOUNT_ID=
 ### Windows
 
 ```powershell
-> go build .
-```
-
-```powershell
 # Port number (required)
 $Env:PORT = 8080
 
@@ -67,20 +72,6 @@ $Env:CF_API_EMAIL = ""
 
 # Cloudflare Account ID (optional)
 $Env:CF_ACCOUNT_ID = ""
-```
-
-## Usage
-
-### Linux
-
-```sh
-$ ./cloudflare-exporter
-```
-
-### Windows
-
-```powershell
-> .\cloudflare-exporter.exe
 ```
 
 ## Prometheus Configuration
@@ -163,4 +154,4 @@ cloudflare_origin_rtt_seconds{code="503",health_region="NEAS",origin_address="ww
 | 500    | Unexpected error calling Cloudflare API. |
 
 [workflow-link]:    https://github.com/chitoku-k/cloudflare-exporter/actions?query=branch:master
-[workflow-badge]:   https://img.shields.io/github/actions/workflow/status/chitoku-k/cloudflare-exporter/ci.yml?branch=master&style=flat-square
+[workflow-badge]:   https://img.shields.io/github/actions/workflow/status/chitoku-k/cloudflare-exporter/publish-image.yml?branch=master&style=flat-square
