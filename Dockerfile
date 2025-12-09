@@ -7,9 +7,10 @@ RUN --mount=type=cache,target=/go \
 COPY . /usr/src/
 
 FROM base AS build
+ARG VERSION=v0.0.0-dev
 RUN --mount=type=cache,target=/go \
     --mount=type=cache,target=/root/.cache/go-build \
-    go build -ldflags='-s -w'
+    go build -trimpath -ldflags="-s -w -X main.version=$VERSION"
 
 FROM base AS dev
 COPY --from=golangci/golangci-lint /usr/bin/golangci-lint /usr/bin
@@ -25,4 +26,5 @@ COPY --link --from=build /lib64 /lib64
 COPY --link --from=build /usr/src/cloudflare-exporter /cloudflare-exporter
 COPY --link --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 EXPOSE $PORT
+RUN ["/cloudflare-exporter", "--version"]
 CMD ["/cloudflare-exporter"]
