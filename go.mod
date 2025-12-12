@@ -8,6 +8,7 @@ require (
 	github.com/cloudflare/cloudflare-go v0.116.0
 	github.com/gin-gonic/gin v1.11.0
 	github.com/prometheus/client_golang v1.23.2
+	github.com/spf13/pflag v1.0.10
 	golang.org/x/sync v0.18.0
 	golang.org/x/sys v0.38.0
 )
@@ -40,7 +41,6 @@ require (
 	github.com/prometheus/procfs v0.16.1 // indirect
 	github.com/quic-go/qpack v0.5.1 // indirect
 	github.com/quic-go/quic-go v0.54.0 // indirect
-	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.3.0 // indirect
 	go.uber.org/mock v0.5.0 // indirect
