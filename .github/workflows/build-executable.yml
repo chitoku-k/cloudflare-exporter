@@ -47,6 +47,8 @@ jobs:
       - name: Get version
         uses: chitoku-k/actions/describe-git-tag@master
         id: version
+        with:
+          semantic-versioning: true
       - name: Build
         run: |
           mkdir -p "${{ runner.temp }}/artifacts"
