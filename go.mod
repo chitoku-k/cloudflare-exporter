@@ -2,7 +2,7 @@ module github.com/chitoku-k/cloudflare-exporter
 
 go 1.25
 
-toolchain go1.25.5
+toolchain go1.25.6
 
 require (
 	github.com/cloudflare/cloudflare-go v0.116.0
