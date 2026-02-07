@@ -26,7 +26,6 @@ ENV PORT=$PORT
 ENV GIN_MODE=release
 COPY --link --from=build $LD $LD
 COPY --link --from=build /lib/$DEB_BUILD_MULTIARCH/libc.so* /lib/$DEB_BUILD_MULTIARCH/
-COPY --link --from=build /lib/$DEB_BUILD_MULTIARCH/libresolv.so* /lib/$DEB_BUILD_MULTIARCH/
 COPY --link --from=build /usr/src/cloudflare-exporter /cloudflare-exporter
 COPY --link --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 EXPOSE $PORT
