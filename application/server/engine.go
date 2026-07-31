@@ -74,7 +74,7 @@ func (e *engine) Start(ctx context.Context) error {
 			return
 		}
 
-		pools, err := e.LoadBalancer.Collect(c, target)
+		pools, err := e.LoadBalancer.Collect(c.Copy(), target)
 		if err != nil {
 			slog.Error("Error in Cloudflare", "err", err)
 			c.Status(http.StatusInternalServerError)
@@ -127,7 +127,7 @@ func (e *engine) Start(ctx context.Context) error {
 			return
 		}
 
-		trace, err := e.Probe.Collect(ctx, target)
+		trace, err := e.Probe.Collect(c.Copy(), target)
 		if err != nil {
 			slog.Error("Error when probing", "err", err)
 			c.Status(http.StatusInternalServerError)
