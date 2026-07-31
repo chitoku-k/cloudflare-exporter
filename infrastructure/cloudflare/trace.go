@@ -96,6 +96,9 @@ func (s *probeService) Collect(ctx context.Context, url string) (service.Trace, 
 			*field = time.Unix(int64(value), 0)
 		}
 	}
+	if err := scanner.Err(); err != nil {
+		return service.Trace{}, fmt.Errorf("failed to read response: %w", err)
+	}
 
 	return trace, nil
 }
